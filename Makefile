@@ -1,6 +1,5 @@
-PROJECT := project
-NAME := name
-VERSION := 0.0.0
+NAME := fitbit
+VERSION := 0.0.1
 REVISION = $(shell git rev-parse --short HEAD 2>/dev/null)
 LDFLAGS = -w -X 'main.Version=$(VERSION)' -X 'main.Revision=$(REVISION)'
 
@@ -27,7 +26,7 @@ static-build: $(SRCS) vendor cli
 	CGO_ENABLED=0 go build -a -tags netgo -installsuffix netgo -ldflags="$(LDFLAGS) -extldflags '-static'" -o bin/$(NAME)
 
 docker-build: Dockerfile Gopkg.toml Gopkg.lock
-	docker build -t $(PROJECT)/$(NAME):$(VERSION) .
+	docker build -t $(NAME):$(VERSION) .
 
 test test/small:
 	go test -v -run='^Test([^M][^_]|[^L][^_])' ./...
