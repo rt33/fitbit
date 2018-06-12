@@ -25,7 +25,7 @@ func main() {
 	ctx := context.Background()
 
 	tanitaClient.Login(ctx)
-	t := time.Date(2018, 5, 11, 0, 0, 0, 0, time.UTC)
+	t := time.Now().Add(-24*time.Hour)
 	bodyCompostion, err := tanitaClient.GetBodyComposition(ctx, t)
 	if err != nil {
 		log.Fatal(err)
